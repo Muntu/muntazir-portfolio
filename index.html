@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muntazir Abbas — Telematics & IoT Product Portfolio (Figma Canvas)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            canvas: {
+              dark: '#0B0F19',
+              panel: '#111827',
+              card: '#151E32',
+              border: '#1E293B',
+              light: '#F8FAFC',
+              lightCard: '#FFFFFF',
+            },
+            figma: {
+              blue: '#0D99FF',
+              purple: '#9747FF',
+              cyan: '#06B6D4',
+              emerald: '#10B981',
+              indigo: '#6366F1',
+              amber: '#F59E0B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Figma Dot Grid Canvas Background */
+    .figma-grid-dark {
+      background-color: #0B0F19;
+      background-image: radial-gradient(rgba(148, 163, 184, 0.16) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .figma-grid-light {
+      background-color: #F1F5F9;
+      background-image: radial-gradient(rgba(15, 23, 42, 0.14) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Figma Selection Frame & Corner Handles */
+    .figma-frame {
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .figma-frame:hover, .figma-frame.selected {
+      box-shadow: 0 0 0 1.5px #0D99FF, 0 20px 40px -15px rgba(6, 182, 212, 0.15);
+    }
+    .figma-handle {
+      width: 7px;
+      height: 7px;
+      background: #FFFFFF;
+      border: 1.5px solid #0D99FF;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .figma-frame:hover .figma-handle, .figma-frame.selected .figma-handle {
+      opacity: 1;
+    }
+    .handle-tl { top: -4px; left: -4px; }
+    .handle-tr { top: -4px; right: -4px; }
+    .handle-bl { bottom: -4px; left: -4px; }
+    .handle-br { bottom: -4px; right: -4px; }
+
+    /* Animated Telemetry Pulse */
+    @keyframes pulseFlow {
+      0% { stroke-dashoffset: 24; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .telemetry-line {
+      stroke-dasharray: 6 6;
+      animation: pulseFlow 1.2s linear infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(100, 116, 139, 0.6);
+    }
+  </style>
+</head>
+<body class="figma-grid-dark text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 transition-colors duration-300">
+
+  <!-- TOP FIGMA WORKSPACE TOOLBAR -->
+  <header class="sticky top-0 z-50 h-12 bg-slate-900/90 dark:bg-[#111827]/95 backdrop-blur-md border-b border-slate-800 px-3 sm:px-5 flex items-center justify-between text-xs">
+    <!-- Left: Figma Menu & Active File Title -->
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono font-semibold">
+        <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+          <circle cx="17.5" cy="17.5" r="3.5"/>
+        </svg>
+        <span class="hidden sm:inline">FIGMA // CANVAS</span>
+      </div>
+
+      <div class="flex items-center gap-1.5 truncate">
+        <span class="text-slate-400 hidden md:inline">Career_Portfolio /</span>
+        <span class="font-semibold text-slate-100 truncate">Muntazir_Abbas_v2026.fig</span>
+        <span class="hidden lg:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE TELEMETRY
+        </span>
+      </div>
+    </div>
+
+    <!-- Center: Frame Jump Navigation -->
+    <nav class="hidden lg:flex items-center gap-1 bg-slate-950/70 p-1 rounded-lg border border-slate-800">
+      <a href="#frame-hero" class="nav-pill px-2.5 py-1 rounded-md font-mono text-[11px] text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 transition">01. Hero</a>
+      <a href="#frame-narrative" class="nav-pill px-2.5 py-1 rounded-md font-mono text-[11px] text-slate-400 hover:text-white transition">02. Narrative Arc</a>
+      <a href="#frame-architecture" class="nav-pill px-2.5 py-1 rounded-md font-mono text-[11px] text-slate-400 hover:text-white transition">03. UBI Architecture</a>
+      <a href="#frame-skills" class="nav-pill px-2.5 py-1 rounded-md font-mono text-[11px] text-slate-400 hover:text-white transition">04. Tech Matrix</a>
+    </nav>
+
+    <!-- Right: Canvas Controls & Quick Actions -->
+    <div class="flex items-center gap-2">
+      <!-- Theme Toggle -->
+      <button id="themeToggle" title="Toggle Dark/Light Canvas" class="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+        <svg id="sunIcon" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg id="moonIcon" class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <!-- Zoom Indicator -->
+      <div class="hidden sm:flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-800/60 border border-slate-700/80 font-mono text-[11px] text-slate-300">
+        <button onclick="adjustZoom(-0.05)" class="hover:text-cyan-400 px-1">−</button>
+        <span id="zoomLabel">100%</span>
+        <button onclick="adjustZoom(0.05)" class="hover:text-cyan-400 px-1">+</button>
+      </div>
+
+      <!-- Copy Contact CTA -->
+      <button onclick="copyContactInfo()" class="px-3 py-1.5 rounded-lg bg-figma-blue hover:bg-sky-500 text-white font-medium text-xs shadow-sm shadow-sky-500/25 transition flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Share / Contact</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- TOAST NOTIFICATION BANNER -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 border border-cyan-500/40 text-slate-100 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-xs font-medium">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span id="toastMsg">Contact details copied to clipboard!</span>
+    </div>
+  </div>
+
+  <!-- MAIN FIGMA WORKSPACE LAYOUT -->
+  <div class="flex min-h-[calc(100vh-3rem)]">
+
+    <!-- LEFT SIDEBAR: FIGMA LAYERS & PAGES PANEL (Desktop) -->
+    <aside class="hidden xl:flex flex-col w-64 shrink-0 bg-[#111827]/90 border-r border-slate-800/90 p-3 select-none">
+      <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800">
+        <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-400">Layers &amp; Frames</span>
+        <span class="font-mono text-[10px] text-slate-500">4 Artboards</span>
+      </div>
+
+      <div class="space-y-1 text-xs font-mono">
+        <a href="#frame-hero" class="flex items-center justify-between px-2.5 py-2 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+          <span class="flex items-center gap-2 truncate">
+            <span class="text-purple-400">❖</span> Component: Hero_v2026
+          </span>
+          <span class="text-[10px] text-slate-500">#01</span>
+        </a>
+        <a href="#frame-narrative" class="flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+          <span class="flex items-center gap-2 truncate">
+            <span class="text-cyan-400">#</span> Flow: Career_Timeline
+          </span>
+          <span class="text-[10px] text-slate-500">#02</span>
+        </a>
+        <a href="#frame-architecture" class="flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+          <span class="flex items-center gap-2 truncate">
+            <span class="text-emerald-400">#</span> System: UBI_Architecture
+          </span>
+          <span class="text-[10px] text-slate-500">#03</span>
+        </a>
+        <a href="#frame-skills" class="flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+          <span class="flex items-center gap-2 truncate">
+            <span class="text-indigo-400">#</span> Matrix: Tech_Stack
+          </span>
+          <span class="text-[10px] text-slate-500">#04</span>
+        </a>
+      </div>
+
+      <!-- Executive Quick Spec Box -->
+      <div class="mt-auto pt-4 border-t border-slate-800/80">
+        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] uppercase tracking-wider text-slate-400">Design Tokens</span>
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2 rounded bg-slate-900 border border-slate-800">
+              <div class="text-slate-500 font-mono text-[10px]">Domain</div>
+              <div class="font-semibold text-slate-200 mt-0.5">Insurtech UBI</div>
+            </div>
+            <div class="p-2 rounded bg-slate-900 border border-slate-800">
+              <div class="text-slate-500 font-mono text-[10px]">Scale</div>
+              <div class="font-semibold text-emerald-400 mt-0.5">15,000+ Fleet</div>
+            </div>
+          </div>
+          <button onclick="openResumeModal()" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-[11px] border border-slate-700 transition flex items-center justify-center gap-1.5">
+            <span>📄 View Executive Resume</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER ARTBOARD CANVAS -->
+    <main id="canvasViewport" class="flex-1 overflow-x-hidden px-4 sm:px-8 lg:px-12 py-8 lg:py-10 transition-transform duration-200 origin-top">
+      <div class="max-w-5xl mx-auto space-y-14">
+
+        <!-- ========================================================= -->
+        <!-- FRAME 01: HERO COMPONENT                                  -->
+        <!-- ========================================================= -->
+        <section id="frame-hero" class="scroll-mt-20">
+          <!-- Figma Frame Header Tag -->
+          <div class="flex items-center justify-between mb-2 px-1">
+            <div class="flex items-center gap-2 font-mono text-xs text-purple-400">
+              <span>❖ Component: Muntazir_Abbas_v2026</span>
+              <span class="text-slate-600 hidden sm:inline">•</span>
+              <span class="text-slate-500 hidden sm:inline">Auto-Layout / Responsive</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-500">1200 × Auto</span>
+          </div>
+
+          <div class="figma-frame selected rounded-2xl bg-[#111827]/90 backdrop-blur-xl border border-slate-800 p-6 sm:p-9 shadow-2xl">
+            <span class="figma-handle handle-tl"></span>
+            <span class="figma-handle handle-tr"></span>
+            <span class="figma-handle handle-bl"></span>
+            <span class="figma-handle handle-br"></span>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <!-- Left Column: Identity & Narrative Hook -->
+              <div class="lg:col-span-7 space-y-5">
+                <div class="inline-flex flex-wrap items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-md bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-xs font-medium">
+                    Telematics &amp; IoT Product Manager
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-medium">
+                    Insurtech (UBI)
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-medium">
+                    Connected Fleet Operations
+                  </span>
+                </div>
+
+                <div>
+                  <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
+                    Muntazir Abbas
+                  </h1>
+                  <p class="mt-3 text-base sm:text-lg text-slate-300 leading-relaxed">
+                    Bridging <span class="text-cyan-400 font-semibold">deep hardware engineering</span> (Teltonika FMB, CAN/OBD, BLE) with <span class="text-indigo-400 font-semibold">end-to-end product ownership</span> and large-scale connected fleet operations.
+                  </p>
+                </div>
+
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  7 years of experience taking IoT ecosystems from device-level firmware validation to launching and scaling <strong class="text-slate-200 font-semibold">Pakistan’s first usage-based auto insurance (UBI) program</strong> across 15,000+ active vehicles—leading cross-functional teams of 10+ and automating operational workflows to cut manual overhead by over 75%.
+                </p>
+
+                <!-- Contact Pills Bar -->
+                <div class="pt-2 flex flex-wrap items-center gap-2.5 text-xs font-mono">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 text-slate-300">
+                    <span class="text-cyan-400">📍</span> Lahore, Pakistan
+                  </span>
+                  <a href="tel:+923125946571" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:border-cyan-500/50 border border-slate-800 text-slate-300 transition">
+                    <span class="text-emerald-400">📞</span> +92-312-5946571
+                  </a>
+                  <a href="mailto:muntazir.abbas015@gmail.com" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:border-cyan-500/50 border border-slate-800 text-slate-300 transition">
+                    <span class="text-indigo-400">✉️</span> muntazir.abbas015@gmail.com
+                  </a>
+                  <a href="https://linkedin.com/in/muntazir-abbas" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:border-sky-500/50 border border-slate-800 text-sky-400 transition">
+                    <span>🔗</span> linkedin.com/in/muntazir-abbas
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Column: Live Telemetry KPI Widget -->
+              <div class="lg:col-span-5">
+                <div class="rounded-xl bg-slate-950/90 border border-slate-800 p-5 relative overflow-hidden">
+                  <!-- Top Widget Bar -->
+                  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800/80">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span class="font-mono text-xs font-semibold text-slate-200">TELEMETRY_IMPACT_METRICS</span>
+                    </div>
+                    <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-900 text-cyan-400 border border-slate-800">VERIFIED</span>
+                  </div>
+
+                  <!-- 2x2 KPI Grid -->
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3.5 rounded-xl bg-gradient-to-br from-cyan-500/10 to-slate-900 border border-cyan-500/25">
+                      <div class="font-mono text-[11px] text-cyan-300">Connected Fleet</div>
+                      <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1">15,000+</div>
+                      <div class="text-[11px] text-slate-400 mt-1">Active UBI vehicles</div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-slate-900 border border-emerald-500/25">
+                      <div class="font-mono text-[11px] text-emerald-300">Alert Automation</div>
+                      <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1">75%+</div>
+                      <div class="text-[11px] text-slate-400 mt-1">Manual call reduction</div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-gradient-to-br from-indigo-500/10 to-slate-900 border border-indigo-500/25">
+                      <div class="font-mono text-[11px] text-indigo-300">Domain Depth</div>
+                      <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1">7 Yrs</div>
+                      <div class="text-[11px] text-slate-400 mt-1">Hardware to Product</div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-gradient-to-br from-purple-500/10 to-slate-900 border border-purple-500/25">
+                      <div class="font-mono text-[11px] text-purple-300">Team Leadership</div>
+                      <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1">10+</div>
+                      <div class="text-[11px] text-slate-400 mt-1">Cross-functional ops</div>
+                    </div>
+                  </div>
+
+                  <!-- Simulated Live Signal Footer -->
+                  <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-400">
+                    <span>PROGRAM: <strong class="text-slate-200">IGI Vitality Drive</strong></span>
+                    <span class="text-emerald-400">● SLA ACTIVE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- FRAME 02: CHAPTER 1 — THE NARRATIVE ARC (FLOW TIMELINE)   -->
+        <!-- ========================================================= -->
+        <section id="frame-narrative" class="scroll-mt-20">
+          <div class="flex items-center justify-between mb-2 px-1">
+            <div class="flex items-center gap-2 font-mono text-xs text-cyan-400">
+              <span># Frame 02: The_Narrative_Arc</span>
+              <span class="text-slate-600 hidden sm:inline">•</span>
+              <span class="text-slate-500 hidden sm:inline">Prototype Flow (2014 → 2026)</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-500">4 Connected Nodes</span>
+          </div>
+
+          <div class="figma-frame rounded-2xl bg-[#111827]/85 backdrop-blur-xl border border-slate-800 p-6 sm:p-8">
+            <span class="figma-handle handle-tl"></span>
+            <span class="figma-handle handle-tr"></span>
+            <span class="figma-handle handle-bl"></span>
+            <span class="figma-handle handle-br"></span>
+
+            <div class="max-w-2xl mb-8">
+              <div class="font-mono text-xs uppercase tracking-wider text-cyan-400 mb-1">Chapter 01 // Career Progression</div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white">From Circuit-Level Engineering to National-Scale Insurtech Operations</h2>
+              <p class="text-sm text-slate-400 mt-2">Click any milestone node below to inspect key deliverables, engineering scope, and leadership milestones.</p>
+            </div>
+
+            <!-- Interactive Career Timeline Grid -->
+            <div class="relative space-y-6">
+              <!-- Vertical Connector Line (Desktop/Mobile) -->
+              <div class="hidden sm:block absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-indigo-500 via-cyan-500 to-emerald-500 opacity-40"></div>
+
+              <!-- NODE 4 (LATEST - TOP OF STORY ARC): 2026 - PRESENT -->
+              <div onclick="selectTimelineNode(4)" id="node-card-4" class="timeline-node cursor-pointer relative sm:pl-16 group">
+                <div class="hidden sm:flex absolute left-3 top-6 w-6 h-6 rounded-full bg-emerald-500/20 border-2 border-emerald-400 items-center justify-center z-10 shadow-lg shadow-emerald-500/30">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                </div>
+                <div class="p-5 sm:p-6 rounded-xl bg-slate-900/90 border-2 border-emerald-500/50 hover:border-emerald-400 transition shadow-lg">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[11px] font-semibold">NODE 04 • CURRENT</span>
+                      <span class="font-mono text-xs text-slate-400">Mar 2026 – Present • Lahore</span>
+                    </div>
+                    <span class="font-mono text-xs text-emerald-400 font-semibold">IGI General Insurance Limited</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-bold text-white">Deputy Manager – Telematics &amp; Fleet Operations</h3>
+                  <p class="text-sm text-slate-300 mt-1.5">Scaling connected fleet operations across 15,000+ active telematics vehicles while leading a cross-functional team of 10+ specialists.</p>
+                  <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-400 list-disc pl-5">
+                    <li>Own day-to-day operations, SLA compliance, and fleet health for <strong class="text-slate-200">15,000+ active telematics devices</strong> across the IGI Drive ecosystem.</li>
+                    <li>Lead end-to-end vendor management and system deployments across internal IT teams and external telematics service providers.</li>
+                    <li>Architect automated <strong class="text-cyan-300">Excel/HTML operational dashboards</strong> and AI-assisted workflows that accelerate customer follow-ups and improve conversion on targeted renewal and device removal campaigns.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- NODE 3: 2022 - 2026 -->
+              <div onclick="selectTimelineNode(3)" id="node-card-3" class="timeline-node cursor-pointer relative sm:pl-16 group">
+                <div class="hidden sm:flex absolute left-3 top-6 w-6 h-6 rounded-full bg-cyan-500/20 border-2 border-cyan-400 items-center justify-center z-10">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                </div>
+                <div class="p-5 sm:p-6 rounded-xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/60 transition">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[11px] font-semibold">NODE 03 • INSURTECH LAUNCH</span>
+                      <span class="font-mono text-xs text-slate-400">Nov 2022 – Mar 2026 • Lahore</span>
+                    </div>
+                    <span class="font-mono text-xs text-cyan-400 font-semibold">IGI General Insurance Limited</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-bold text-white">Assistant Manager – Insurtech &amp; Telematics Product</h3>
+                  <p class="text-sm text-slate-300 mt-1.5">Spearheaded the operational rollout of Pakistan’s first usage-based auto insurance program rewarding safe driving.</p>
+                  <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-400 list-disc pl-5">
+                    <li>Spearheaded the operational launch of <strong class="text-slate-200">IGI Vitality Drive</strong>, Pakistan’s first telematics-based auto insurance program.</li>
+                    <li>Engineered and deployed an automated robotic call integration for real-time vehicle alerts, <strong class="text-emerald-300">eliminating over 75% of manual alert-calling workload</strong> for customer support specialists.</li>
+                    <li>Maintained fleet uptime and data reporting integrity at scale via strict configuration governance, proactive alert management, and device issue resolution.</li>
+                    <li>Conducted end-to-end User Acceptance Testing (UAT) prior to production rollouts and delivered regular KPI reports to senior management.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- NODE 2: 2019 - 2022 -->
+              <div onclick="selectTimelineNode(2)" id="node-card-2" class="timeline-node cursor-pointer relative sm:pl-16 group">
+                <div class="hidden sm:flex absolute left-3 top-6 w-6 h-6 rounded-full bg-indigo-500/20 border-2 border-indigo-400 items-center justify-center z-10">
+                  <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                </div>
+                <div class="p-5 sm:p-6 rounded-xl bg-slate-900/75 border border-slate-800 hover:border-indigo-500/60 transition">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-300 font-mono text-[11px] font-semibold">NODE 02 • GLOBAL HARDWARE</span>
+                      <span class="font-mono text-xs text-slate-400">Nov 2019 – Oct 2022 • Lahore &amp; USA (Remote)</span>
+                    </div>
+                    <span class="font-mono text-xs text-indigo-400 font-semibold">Teltonika &amp; UniteGPS (USA)</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-bold text-white">Technical Support Engineer (Teltonika) &amp; Product Engineer Contract (UniteGPS)</h3>
+                  <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-400 list-disc pl-5">
+                    <li><strong class="text-slate-200">Teltonika (Nov 2019 – Oct 2022):</strong> Resolved complex Tier-2/Tier-3 hardware, firmware, and cellular connectivity escalations across FMB trackers, BLE sensors, CAN/OBD interfaces, and Escort fuel-sensor integrations.</li>
+                    <li>Partnered directly with Sales, R&amp;D, and Product Management to channel field insights into product enhancements, while executing pre-release QA validation on new hardware and firmware builds.</li>
+                    <li><strong class="text-slate-200">UniteGPS — USA Remote Contract (Oct 2021 – Apr 2022):</strong> Configured and provisioned Morey telematics devices (MCX101, MCX-301) for fleet deployments and authored structured Arduino coursework for STEM education.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- NODE 1: 2014 - 2019 -->
+              <div onclick="selectTimelineNode(1)" id="node-card-1" class="timeline-node cursor-pointer relative sm:pl-16 group">
+                <div class="hidden sm:flex absolute left-3 top-6 w-6 h-6 rounded-full bg-purple-500/20 border-2 border-purple-400 items-center justify-center z-10">
+                  <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                </div>
+                <div class="p-5 sm:p-6 rounded-xl bg-slate-900/75 border border-slate-800 hover:border-purple-500/60 transition">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 font-mono text-[11px] font-semibold">NODE 01 • ENGINEERING ORIGIN</span>
+                      <span class="font-mono text-xs text-slate-400">2014 – May 2019 • Islamabad</span>
+                    </div>
+                    <span class="font-mono text-xs text-purple-400 font-semibold">Institute of Space Technology</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-bold text-white">B.E. Electrical, Electronics &amp; Communications Engineering + Graduate Research</h3>
+                  <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-400 list-disc pl-5">
+                    <li><strong class="text-slate-200">Graduate Research Assistant (Oct 2018 – May 2019):</strong> Designed and prototyped an end-to-end wireless temperature monitoring system (custom PCB layout, automated threshold alerting, and reporting) and delivered live on-site client demonstrations.</li>
+                    <li><strong class="text-slate-200">Academic Foundation (2014 – 2018):</strong> Bachelor of Engineering in Electrical, Electronics &amp; Communications Engineering, Institute of Space Technology.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- FRAME 03: CHAPTER 2 — INTERACTIVE UBI & AUTOMATION SYSTEM -->
+        <!-- ========================================================= -->
+        <section id="frame-architecture" class="scroll-mt-20">
+          <div class="flex items-center justify-between mb-2 px-1">
+            <div class="flex items-center gap-2 font-mono text-xs text-emerald-400">
+              <span># Frame 03: UBI_Ecosystem_Architecture</span>
+              <span class="text-slate-600 hidden sm:inline">•</span>
+              <span class="text-slate-500 hidden sm:inline">Interactive System Blueprint</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-500">Click Nodes to Inspect</span>
+          </div>
+
+          <div class="figma-frame rounded-2xl bg-[#111827]/90 backdrop-blur-xl border border-slate-800 p-6 sm:p-8">
+            <span class="figma-handle handle-tl"></span>
+            <span class="figma-handle handle-tr"></span>
+            <span class="figma-handle handle-bl"></span>
+            <span class="figma-handle handle-br"></span>
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+              <div>
+                <div class="font-mono text-xs uppercase tracking-wider text-emerald-400 mb-1">Chapter 02 // Case Study &amp; System Architecture</div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Insurtech UBI &amp; Automated Fleet Operations Pipeline</h2>
+                <p class="text-sm text-slate-400 mt-1">Select any architecture block below to inspect how hardware telemetry transforms into automated operations and executive KPIs.</p>
+              </div>
+              <span class="font-mono text-xs px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-cyan-300 shrink-0">
+                Interactive Inspector Ready
+              </span>
+            </div>
+
+            <!-- Interactive Architecture Flow Nodes -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+              <button onclick="inspectArch('edge')" id="arch-btn-edge" class="arch-btn text-left p-4 rounded-xl bg-slate-900 border-2 border-cyan-500 transition">
+                <div class="flex items-center justify-between font-mono text-[10px] text-cyan-400 mb-1.5">
+                  <span>LAYER 01 // EDGE</span>
+                  <span>→</span>
+                </div>
+                <div class="font-bold text-sm text-white">In-Vehicle Telemetry</div>
+                <div class="text-xs text-slate-400 mt-1">Teltonika FMB, CAN/OBD-II, BLE &amp; Fuel Sensors</div>
+              </button>
+
+              <button onclick="inspectArch('governance')" id="arch-btn-governance" class="arch-btn text-left p-4 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-indigo-500/60 transition">
+                <div class="flex items-center justify-between font-mono text-[10px] text-indigo-400 mb-1.5">
+                  <span>LAYER 02 // PRODUCT</span>
+                  <span>→</span>
+                </div>
+                <div class="font-bold text-sm text-white">UBI &amp; UAT Governance</div>
+                <div class="text-xs text-slate-400 mt-1">Config Control, Release QA &amp; Vendor SLAs</div>
+              </button>
+
+              <button onclick="inspectArch('automation')" id="arch-btn-automation" class="arch-btn text-left p-4 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/60 transition">
+                <div class="flex items-center justify-between font-mono text-[10px] text-emerald-400 mb-1.5">
+                  <span>LAYER 03 // AUTOMATION</span>
+                  <span>→</span>
+                </div>
+                <div class="font-bold text-sm text-white">Robotic Call Engine</div>
+                <div class="text-xs text-slate-400 mt-1">-75% Manual Alert-Calling Workload</div>
+              </button>
+
+              <button onclick="inspectArch('bi')" id="arch-btn-bi" class="arch-btn text-left p-4 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-purple-500/60 transition">
+                <div class="flex items-center justify-between font-mono text-[10px] text-purple-400 mb-1.5">
+                  <span>LAYER 04 // INSIGHTS</span>
+                  <span>✓</span>
+                </div>
+                <div class="font-bold text-sm text-white">AI &amp; HTML Dashboards</div>
+                <div class="text-xs text-slate-400 mt-1">Renewal &amp; Removal Campaign Conversion</div>
+              </button>
+            </div>
+
+            <!-- Dynamic Inspector Output Card -->
+            <div id="archInspectorPanel" class="rounded-xl bg-slate-950/90 border border-slate-800 p-5 sm:p-6 transition-all">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- FRAME 04: CHAPTER 3 — CORE COMPETENCIES & TECH MATRIX     -->
+        <!-- ========================================================= -->
+        <section id="frame-skills" class="scroll-mt-20">
+          <div class="flex items-center justify-between mb-2 px-1">
+            <div class="flex items-center gap-2 font-mono text-xs text-indigo-400">
+              <span># Frame 04: Core_Competencies_Matrix</span>
+              <span class="text-slate-600 hidden sm:inline">•</span>
+              <span class="text-slate-500 hidden sm:inline">Filterable Design System</span>
+            </div>
+            <span class="font-mono text-[11px] text-slate-500">3 Pillars</span>
+          </div>
+
+          <div class="figma-frame rounded-2xl bg-[#111827]/90 backdrop-blur-xl border border-slate-800 p-6 sm:p-8">
+            <span class="figma-handle handle-tl"></span>
+            <span class="figma-handle handle-tr"></span>
+            <span class="figma-handle handle-bl"></span>
+            <span class="figma-handle handle-br"></span>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <div class="font-mono text-xs uppercase tracking-wider text-indigo-400 mb-1">Chapter 03 // Technical &amp; Leadership Stack</div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Core Competencies &amp; Technical Skills</h2>
+              </div>
+
+              <!-- Filter Buttons -->
+              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <button onclick="filterSkills('all')" id="filter-all" class="skill-filter-btn px-3 py-1.5 rounded-lg bg-indigo-500 text-white font-medium transition">All Pillars</button>
+                <button onclick="filterSkills('product')" id="filter-product" class="skill-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition">Product &amp; Ops</button>
+                <button onclick="filterSkills('hardware')" id="filter-hardware" class="skill-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition">Telematics &amp; IoT</button>
+                <button onclick="filterSkills('data')" id="filter-data" class="skill-filter-btn px-3 py-1.5 rounded-lg bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition">Data &amp; AI</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <!-- Pillar 1: Product & Operations -->
+              <div data-category="product" class="skill-pillar p-5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="px-2.5 py-1 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[11px] font-semibold">PILLAR 01</span>
+                    <span class="text-cyan-400 text-sm">⚙️</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-3">Product &amp; Operations</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">UBI Product Ownership</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">End-to-End UAT</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Release Validation</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Vendor Management</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Team Coordination (10+)</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">KPI Reporting</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Campaign Lifecycle Follow-Up</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">JIRA</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pillar 2: Telematics & Hardware -->
+              <div data-category="hardware" class="skill-pillar p-5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-300 font-mono text-[11px] font-semibold">PILLAR 02</span>
+                    <span class="text-emerald-400 text-sm">📡</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-3">Telematics &amp; Hardware</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Teltonika FMB Trackers</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Morey (MCX101, MCX-301)</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">CAN / OBD-II</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">BLE Sensors</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Escort Fuel Sensors</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">GPSSERVER</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Modbus &amp; GENSET Automation</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">PCB Design (Proteus)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pillar 3: Data & Automation -->
+              <div data-category="data" class="skill-pillar p-5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="px-2.5 py-1 rounded bg-purple-500/15 text-purple-300 font-mono text-[11px] font-semibold">PILLAR 03</span>
+                    <span class="text-purple-400 text-sm">⚡</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-3">Data &amp; Automation</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Advanced Excel</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">HTML Operational Dashboards</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">AI-Assisted Workflow Automation</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Robotic Call Alert Integration</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-200">Project Management</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Education & Languages Strip -->
+            <div class="mt-6 pt-6 border-t border-slate-800/90 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between gap-3">
+                <div>
+                  <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400">Education</div>
+                  <div class="text-sm font-bold text-white mt-0.5">B.E. Electrical, Electronics &amp; Communications Engineering</div>
+                  <div class="text-xs text-slate-400">Institute of Space Technology</div>
+                </div>
+                <span class="font-mono text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyan-400 shrink-0">2014 – 2018</span>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between gap-3">
+                <div>
+                  <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400">Languages</div>
+                  <div class="text-sm font-bold text-white mt-0.5">English &amp; Urdu</div>
+                  <div class="text-xs text-slate-400">English (Full Professional Proficiency) • Urdu (Native)</div>
+                </div>
+                <span class="font-mono text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-emerald-400 shrink-0">BILINGUAL</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER CTA -->
+        <footer class="rounded-2xl bg-gradient-to-r from-slate-900 via-[#111827] to-slate-900 border border-slate-800 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div class="font-mono text-xs text-cyan-400">READY FOR EXECUTIVE PRODUCT &amp; IOT LEADERSHIP ROLES</div>
+            <h3 class="text-xl font-bold text-white mt-1">Let’s build scalable connected vehicle &amp; Insurtech ecosystems.</h3>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 shrink-0">
+            <button onclick="openResumeModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition">
+              📄 Executive Summary Sheet
+            </button>
+            <a href="mailto:muntazir.abbas015@gmail.com" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold shadow-lg shadow-cyan-500/20 transition">
+              ✉️ Get in Touch
+            </a>
+          </div>
+        </footer>
+
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: FIGMA PROPERTIES INSPECTOR (Desktop) -->
+    <aside class="hidden 2xl:flex flex-col w-72 shrink-0 bg-[#111827]/90 border-l border-slate-800/90 p-4 select-none">
+      <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800">
+        <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-400">Design &amp; Prototype</span>
+        <span class="font-mono text-[10px] text-cyan-400">Inspect</span>
+      </div>
+
+      <div id="rightInspectorContent" class="space-y-4 text-xs">
+        <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
+          <div class="font-mono text-[10px] uppercase text-slate-500">Selected Frame</div>
+          <div id="inspectorFrameTitle" class="font-bold text-sm text-white">Component: Muntazir_Abbas_v2026</div>
+          <p id="inspectorFrameDesc" class="text-slate-400 leading-relaxed">
+            Executive profile showcasing 7 years of progression from Teltonika hardware engineering to Deputy Manager leading 15,000+ connected UBI vehicles at IGI General Insurance.
+          </p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2.5">
+          <div class="font-mono text-[10px] uppercase text-slate-500">Key Career Highlights</div>
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/70">
+            <span class="text-slate-400">Active Fleet</span>
+            <span class="font-mono font-semibold text-emerald-400">15,000+ Vehicles</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/70">
+            <span class="text-slate-400">Alert Automation</span>
+            <span class="font-mono font-semibold text-cyan-400">-75% Manual Load</span>
+          </div>
+          <div class="flex justify-between items-center py-1 border-b border-slate-800/70">
+            <span class="text-slate-400">Team Span</span>
+            <span class="font-mono font-semibold text-indigo-400">10+ Specialists</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-slate-400">Location</span>
+            <span class="font-mono font-semibold text-slate-200">Lahore, PK</span>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/25 space-y-2">
+          <div class="font-mono text-[10px] uppercase text-indigo-300">Quick Actions</div>
+          <button onclick="copyContactInfo()" class="w-full py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white font-semibold transition">
+            Copy Contact &amp; LinkedIn
+          </button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- EXECUTIVE RESUME SUMMARY MODAL -->
+  <div id="resumeModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="bg-[#111827] border border-slate-700 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between border-b border-slate-800 pb-4 mb-4">
+        <div>
+          <span class="font-mono text-[11px] text-cyan-400">ATS-OPTIMIZED EXECUTIVE PROFILE</span>
+          <h3 class="text-2xl font-bold text-white mt-0.5">Muntazir Abbas</h3>
+          <p class="text-xs text-slate-400 mt-1">Telematics &amp; IoT Product Professional | Insurtech (UBI) &amp; Connected Fleet Operations</p>
+        </div>
+        <button onclick="closeResumeModal()" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">✕</button>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <div>
+          <h4 class="font-mono text-xs uppercase text-cyan-400 font-semibold mb-1">Professional Summary</h4>
+          <p>
+            Results-driven Telematics &amp; IoT Product Professional with 7 years of experience bridging deep hardware engineering (Teltonika FMB, CAN/OBD, BLE) with end-to-end product ownership and large-scale fleet operations. Proven track record of launching and scaling Pakistan’s first usage-based auto insurance (UBI) program to 15,000+ connected vehicles. Adept at leading cross-functional teams of 10+, managing external vendors, and building automated operational pipelines that reduce manual customer support specialist workload by over 75%.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+            <div class="font-semibold text-white">Current Role</div>
+            <div class="text-cyan-400 font-medium mt-0.5">Deputy Manager – Telematics &amp; Fleet Operations</div>
+            <div class="text-slate-400 text-xs mt-0.5">IGI General Insurance Limited (Mar 2026 – Present)</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+            <div class="font-semibold text-white">Previous Leadership</div>
+            <div class="text-emerald-400 font-medium mt-0.5">Assistant Manager – Insurtech &amp; Telematics Product</div>
+            <div class="text-slate-400 text-xs mt-0.5">IGI General Insurance Limited (Nov 2022 – Mar 2026)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-end gap-3">
+        <button onclick="copyContactInfo()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition">
+          Copy Contact Details
+        </button>
+        <button onclick="closeResumeModal()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold transition">
+          Back to Figma Canvas
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE CANVAS LOGIC -->
+  <script>
+    // Architecture Inspector Dataset (Strictly aligned with resume facts)
+    const archData = {
+      edge: {
+        badge: 'LAYER 01 // IN-VEHICLE TELEMETRY & HARDWARE',
+        title: 'Multi-Protocol Edge Hardware & Sensor Integration',
+        color: 'text-cyan-400',
+        summary: 'Deep device-level mastery built over 7 years across Teltonika FMB trackers, Morey (MCX101, MCX-301), CAN/OBD-II vehicle diagnostics, BLE sensors, and Escort fuel-sensor integrations.',
+        highlights: [
+          'Strict device configuration governance and firmware validation prior to large-scale fleet rollout.',
+          'Root-cause hardware, firmware, and cellular connectivity troubleshooting across 15,000+ connected vehicles.',
+          'Pre-release QA validation and field testing on tracker builds and configurator updates.'
+        ],
+        stack: ['Teltonika FMB Series', 'CAN Bus / OBD-II', 'BLE Sensors', 'Escort Fuel Sensors', 'Morey MCX101/301', 'GPSSERVER']
+      },
+      governance: {
+        badge: 'LAYER 02 // PRODUCT OWNERSHIP & UAT GOVERNANCE',
+        title: 'Insurtech UBI Rollout, Vendor SLAs & Executive KPI Reporting',
+        color: 'text-indigo-400',
+        summary: 'Spearheaded the operational launch of IGI Vitality Drive—Pakistan’s first usage-based auto insurance (UBI) program rewarding safe driving behavior—while coordinating a 10+ specialist team.',
+        highlights: [
+          'End-to-end User Acceptance Testing (UAT) of telematics solutions and platform releases before production deployment.',
+          'Cross-functional alignment between internal IT teams, external telematics vendors, and senior leadership.',
+          'Continuous fleet health monitoring and executive KPI reporting to maintain reporting integrity at scale.'
+        ],
+        stack: ['UBI Product Ownership', 'End-to-End UAT', 'Vendor & SLA Management', 'JIRA', 'Executive KPI Reporting']
+      },
+      automation: {
+        badge: 'LAYER 03 // AUTOMATED ALERT WORKFLOWS',
+        title: 'Robotic Call Integration for Real-Time Vehicle Alerts',
+        color: 'text-emerald-400',
+        summary: 'Engineered and deployed an automated robotic calling integration for real-time vehicle alerts across the active tracking fleet.',
+        highlights: [
+          'Eliminated over 75% of manual alert-calling workload for customer support specialists.',
+          'Accelerated response times on critical vehicle telemetry alerts while freeing specialists for high-value escalations.',
+          'Seamless integration between telematics alert triggers and outbound automated voice workflows.'
+        ],
+        stack: ['Robotic Call Integration', 'Real-Time Alert Engine', 'Workflow Automation', '75%+ Workload Reduction']
+      },
+      bi: {
+        badge: 'LAYER 04 // OPERATIONAL DASHBOARDS & AI WORKFLOWS',
+        title: 'Excel/HTML Dashboards & AI-Assisted Campaign Conversion',
+        color: 'text-purple-400',
+        summary: 'Architected self-built Excel/HTML operational dashboards, daily reporting pipelines, and AI-assisted workflows that improve customer follow-ups and conversion rates.',
+        highlights: [
+          'Targeted operational tracking for device renewal and removal campaigns across 15,000+ vehicles.',
+          'AI-assisted workflow automation streamlining daily reporting and follow-up prioritization.',
+          'Actionable visibility for a 10+ cross-functional operations team and senior management.'
+        ],
+        stack: ['HTML Operational Dashboards', 'Advanced Excel', 'AI-Assisted Automation', 'Campaign Lifecycle Optimization']
+      }
+    };
+
+    function inspectArch(key) {
+      const data = archData[key];
+      if (!data) return;
+
+      // Update active button styling
+      document.querySelectorAll('.arch-btn').forEach(btn => {
+        btn.classList.remove('border-2', 'border-cyan-500', 'border-indigo-500', 'border-emerald-500', 'border-purple-500', 'bg-slate-900');
+        btn.classList.add('border', 'border-slate-800', 'bg-slate-900/70');
+      });
+
+      const activeBtn = document.getElementById(`arch-btn-${key}`);
+      const borderMap = {
+        edge: 'border-cyan-500',
+        governance: 'border-indigo-500',
+        automation: 'border-emerald-500',
+        bi: 'border-purple-500'
+      };
+      activeBtn.classList.remove('border', 'border-slate-800', 'bg-slate-900/70');
+      activeBtn.classList.add('border-2', borderMap[key], 'bg-slate-900');
+
+      // Render inspector content
+      const panel = document.getElementById('archInspectorPanel');
+      panel.innerHTML = `
+        <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+          <div class="space-y-3 flex-1">
+            <div class="font-mono text-xs font-semibold ${data.color}">${data.badge}</div>
+            <h3 class="text-xl font-bold text-white">${data.title}</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">${data.summary}</p>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-400 list-disc pl-5 pt-1">
+              ${data.highlights.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="lg:w-64 shrink-0 p-4 rounded-xl bg-slate-900 border border-slate-800">
+            <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400 mb-2.5">Technologies &amp; Scope</div>
+            <div class="flex flex-wrap gap-1.5">
+              ${data.stack.map(tag => `<span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 font-mono text-[11px] text-slate-200">${tag}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Sync right sidebar inspector if visible
+      const rightTitle = document.getElementById('inspectorFrameTitle');
+      const rightDesc = document.getElementById('inspectorFrameDesc');
+      if (rightTitle && rightDesc) {
+        rightTitle.textContent = data.title;
+        rightDesc.textContent = data.summary;
+      }
+    }
+
+    // Initialize default architecture layer
+    inspectArch('edge');
+
+    // Timeline Node Selection
+    const nodeMeta = {
+      4: { title: 'Deputy Manager (2026–Present)', desc: 'Owning day-to-day operations & SLAs for 15,000+ active telematics devices at IGI General Insurance, leading 10+ specialists.' },
+      3: { title: 'Assistant Manager (2022–2026)', desc: 'Spearheaded Pakistan’s first UBI rollout (IGI Vitality Drive) and cut manual alert-calling workload by 75%+ via robotic calls.' },
+      2: { title: 'Teltonika & UniteGPS (2019–2022)', desc: 'Tier-2/3 FMB/CAN/BLE hardware & firmware engineering at Teltonika + remote US Morey provisioning for UniteGPS.' },
+      1: { title: 'B.E. Electrical Eng & Research (2014–2019)', desc: 'Institute of Space Technology graduate & research assistant building wireless PCB temperature monitoring systems.' }
+    };
+
+    function selectTimelineNode(id) {
+      const rightTitle = document.getElementById('inspectorFrameTitle');
+      const rightDesc = document.getElementById('inspectorFrameDesc');
+      if (rightTitle && rightDesc && nodeMeta[id]) {
+        rightTitle.textContent = nodeMeta[id].title;
+        rightDesc.textContent = nodeMeta[id].desc;
+      }
+    }
+
+    // Skill Pillar Filter
+    function filterSkills(category) {
+      document.querySelectorAll('.skill-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-500', 'text-white', 'font-medium');
+        btn.classList.add('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+      });
+      const activeBtn = document.getElementById(`filter-${category}`);
+      activeBtn.classList.remove('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+      activeBtn.classList.add('bg-indigo-500', 'text-white', 'font-medium');
+
+      document.querySelectorAll('.skill-pillar').forEach(pillar => {
+        if (category === 'all' || pillar.dataset.category === category) {
+          pillar.style.display = 'flex';
+        } else {
+          pillar.style.display = 'none';
+        }
+      });
+    }
+
+    // Copy Contact Info using execCommand fallback
+    function copyContactInfo() {
+      const text = "Muntazir Abbas | Telematics & IoT Product Manager (Insurtech UBI)\nEmail: muntazir.abbas015@gmail.com | Phone: +92-312-5946571\nLinkedIn: https://linkedin.com/in/muntazir-abbas | Location: Lahore, Pakistan";
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Contact & LinkedIn details copied to clipboard!');
+      } catch (err) {
+        showToast('Email: muntazir.abbas015@gmail.com');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toastMsg');
+      msg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // Modal Controls
+    function openResumeModal() {
+      const modal = document.getElementById('resumeModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeResumeModal() {
+      const modal = document.getElementById('resumeModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Zoom Control
+    let currentZoom = 1.0;
+    function adjustZoom(delta) {
+      currentZoom = Math.min(1.15, Math.max(0.85, +(currentZoom + delta).toFixed(2)));
+      const viewport = document.getElementById('canvasViewport');
+      viewport.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLabel').textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+
+    // Theme Toggle (Dark Obsidian vs Light Figma Artboard)
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    let isDark = true;
+
+    themeToggle.addEventListener('click', () => {
+      isDark = !isDark;
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.remove('figma-grid-light', 'text-slate-900');
+        document.body.classList.add('figma-grid-dark', 'text-slate-100');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+        showToast('Switched to Obsidian Dark Canvas');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('figma-grid-dark', 'text-slate-100');
+        document.body.classList.add('figma-grid-light', 'text-slate-900');
+        moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+        showToast('Switched to Daylight Artboard');
+      }
+    });
+  </script>
+</body>
+</html>
